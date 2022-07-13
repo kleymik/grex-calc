@@ -1,0 +1,95 @@
+trav-sexpr id=  0 progn-wrapper
+trav-sexpr id=  1 (* ;= 1713.80     ;;;        ;;; Savings per Year                                      
+trav-sexpr id=  2    (* ;= 142.82   ;;;        ;;;                                                       
+trav-sexpr id=  3       (+ ;= 7.79  ;;;        ;;; daily cost                                            
+trav-sexpr id=  4          2.60     ;;;        ;;; afternoon return                                      
+trav-sexpr id=  5          5.19)    ;;;        ;;; morning out                                           
+trav-sexpr id=  6    (/ ;= 18.33    ;;;        ;;; work days per month                                   
+trav-sexpr id=  7       220.0       ;;;        ;;; work days per year                                    
+trav-sexpr id=  8       12))        ;;;        ;;; months in a year                                      
+trav-sexpr id=  9 12)               ;;;        ;;; months in a year                                      
+
+########## Propagating rails values
+propagate rails begin ----------------------------------
+
+
+Found rails   0 ;;;;;;;;;;;
+Found rails   1 ;;;;;;;;;;;
+Found rails   2 ;;;;;;;;;;;
+Found rails   3 -         -
+Found rails   4 r         r
+Found rails   5 a         a
+Found rails   6 i         i
+Found rails   7 l         l
+Found rails   8 s         s
+Found rails   9 -         -
+Found rails  10 -         -
+Found rails  11 ;;;;;;;;;;;
+
+
+propagate rails gen vals hashTable 
+propagate rails set vals from hashTable #s(hash-table size 65 test eql rehash-size 1.5 rehash-threshold 0.8125 data ())
+propagate rails end ---------------------------------
+
+########## The DEBUG is:
+-----------------MODE=debug----------------------
+ NODE-ID OPRTR        OPRND        NCHLDS   EVALSEXPR     SEXPR                                                LINE
+|  1    |         *  |       nil  |     2  |    1713.80  |  (* (* (+ 2.6 5.19) (/ 220.0 12)) 12)                |  (* ;= 1713.80     ;;;        ;;; Savings per Year                                |
+|  2    |         *  |       nil  |     2  |     142.82  |  (* (+ 2.6 5.19) (/ 220.0 12))                       |     (* ;= 142.82   ;;;        ;;;                                                 |
+|  3    |         +  |       nil  |     2  |       7.79  |  (+ 2.6 5.19)                                        |        (+ ;= 7.79  ;;;        ;;; daily cost                                      |
+|  4    |       nil  |       2.6  |     0  |       2.60  |  2.6                                                 |           2.60     ;;;        ;;; afternoon return                                |
+|  5    |       nil  |      5.19  |     0  |       5.19  |  5.19                                                |           5.19)    ;;;        ;;; morning out                                     |
+|  6    |         /  |       nil  |     2  |      18.33  |  (/ 220.0 12)                                        |     (/ ;= 18.33    ;;;        ;;; work days per month                             |
+|  7    |       nil  |     220.0  |     0  |     220.00  |  220.0                                               |        220.0       ;;;        ;;; work days per year                              |
+|  8    |       nil  |        12  |     0  |      12.00  |  12                                                  |        12))        ;;;        ;;; months in a year                                |
+|  9    |       nil  |        12  |     0  |      12.00  |  12                                                  |  12)               ;;;        ;;; months in a year                                |
+
+########## Updating cached sexpr values
+
+########## The RAILED AST is:
+
+  id=0, val=1713.8, seval=1713.8, oprtr=progn
+   sexpr=(progn (* (* (+ 2.6 5.19) (/ 220.0 12)) 12))
+   line=|progn-wrapper|
+
+    id=1, val=1713.8, seval=1713.8, endarg=t, oprtr=*
+     sexpr=(* (* (+ 2.6 5.19) (/ 220.0 12)) 12)
+     line=|(* ;= 1713.80     ;;;        ;;; Savings per Year|
+
+      id=2, val=142.81666666666666, seval=142.81666666666666, oprtr=*
+       sexpr=(* (+ 2.6 5.19) (/ 220.0 12))
+       line=|   (* ;= 142.82   ;;;        ;;;|
+
+        id=3, val=7.790000000000001, seval=7.790000000000001, oprtr=+
+         sexpr=(+ 2.6 5.19)
+         line=|      (+ ;= 7.79  ;;;        ;;; daily cost|
+
+          id=4, val=2.6, seval=2.6, oprnd=2.6
+           sexpr=2.6
+           line=|         2.60     ;;;        ;;; afternoon return|
+
+          id=5, val=5.19, seval=5.19, endarg=t, oprnd=5.19
+           sexpr=5.19
+           line=|         5.19)    ;;;        ;;; morning out|
+
+        id=6, val=18.333333333333332, seval=18.333333333333332, endarg=t, oprtr=/
+         sexpr=(/ 220.0 12)
+         line=|   (/ ;= 18.33    ;;;        ;;; work days per month|
+
+          id=7, val=220.0, seval=220.0, oprnd=220.0
+           sexpr=220.0
+           line=|      220.0       ;;;        ;;; work days per year|
+
+          id=8, val=12, seval=12, endarg=t, oprnd=12
+           sexpr=12
+           line=|      12))        ;;;        ;;; months in a year|
+
+      id=9, val=12, seval=12, endarg=t, oprnd=12
+       sexpr=12
+       line=|12)               ;;;        ;;; months in a year|
+
+########## Deleting Panel
+
+########## Replacing with Parsed Panel VIA SEXPRINT AST
+
+########## Done
